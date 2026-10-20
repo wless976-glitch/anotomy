@@ -1,0 +1,32 @@
+{
+  "name": "anatomy-landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "build:anatomy": "node scripts/build-anatomy.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "three": "0.160.0",
+    "three-mesh-bvh": "^0.9.16"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "^4.5.1",
+    "@gltf-transform/extensions": "^4.5.1",
+    "@gltf-transform/functions": "^4.5.1",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.160.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "meshoptimizer": "^1.3.0",
+    "typescript": "^5"
+  }
+}
