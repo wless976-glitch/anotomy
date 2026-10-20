@@ -4,14 +4,28 @@ import type { LayerName } from './anatomy-scene';
 
 export const brand = 'Хүний бие 3D';
 
+// the four layers: header "models" menu (menuLabel) and the side progress labels (label)
 export const navItems = [
-    { href: '#slide-1', label: 'Арьс', scroll: 0.0 },
-    { href: '#slide-2', label: 'Булчин', scroll: 0.34 },
-    { href: '#slide-3', label: 'Яс', scroll: 0.62 },
-    { href: '#slide-4', label: 'Эрхтэн', scroll: 0.94 }
+    { href: '#slide-1', label: 'Арьс', menuLabel: 'Арьс', scroll: 0.0 },
+    { href: '#slide-2', label: 'Булчин', menuLabel: 'Булчин', scroll: 0.34 },
+    { href: '#slide-3', label: 'Яс', menuLabel: 'Араг яс', scroll: 0.62 },
+    { href: '#slide-4', label: 'Эрхтэн', menuLabel: 'Дотор эрхтэн', scroll: 0.94 }
 ];
 
-export const headerCta = { href: '#slide-4', label: 'Нэвтрэх' };
+// Links without `scroll` point at pages that don't exist yet.
+export const header = {
+    modelsLabel: 'Загварууд',
+    links: [
+        { href: '#slide-4', label: 'Биеийн системүүд', scroll: 0.94 },
+        { href: '#slide-2', label: 'Онцлог', scroll: 0.34 },
+        { href: '#schools', label: 'Сургууль, боловсрол' },
+        { href: '#tutorial', label: 'Заавар' },
+        { href: '#faq', label: 'Түгээмэл асуулт' },
+        { href: '#contact', label: 'Холбоо барих' }
+    ] as { href: string; label: string; scroll?: number }[],
+    download: { href: '#slide-4', label: 'Татах', scroll: 0.94 },
+    menuLabel: 'Цэс'
+};
 
 export const hero = {
     title: ['Хүний бие', '3D-ээр'],

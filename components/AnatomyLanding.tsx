@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import type { MouseEvent } from 'react';
 import SplitTitle from './SplitTitle';
 import { AnatomyScene, type FrameState, type PickResult } from '@/lib/anatomy-scene';
 import {
-    atlasStats, brand, credit, headerCta, hero, layerLabels, loadingLabel, muscles, navItems, organs, skeleton
+    atlasStats, credit, hero, layerLabels, loadingLabel, muscles, navItems, organs, skeleton
 } from '@/lib/content';
+import SiteHeader from './SiteHeader';
 
 const MODEL_URL = '/models/anatomy.glb';
 
@@ -15,11 +15,6 @@ const SLIDE_RANGES: [number, number][] = [[-0.10, 0.12], [0.28, 0.40], [0.56, 0.
 
 // frame-rate independent version of a per-frame lerp factor tuned at 60fps
 const damp = (factor: number, delta: number) => 1 - Math.pow(1 - factor, delta * 60);
-
-function scrollToProgress(progress: number) {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    window.scrollTo({ top: maxScroll * progress, behavior: 'smooth' });
-}
 
 export default function AnatomyLanding() {
     const rootRef = useRef<HTMLDivElement>(null);
@@ -190,11 +185,6 @@ export default function AnatomyLanding() {
         };
     }, []);
 
-    const goTo = (progress: number) => (event: MouseEvent) => {
-        event.preventDefault();
-        scrollToProgress(progress);
-    };
-
     return (
         <div ref={rootRef}>
             <div className="cursor-inner" aria-hidden="true" />
@@ -204,24 +194,9 @@ export default function AnatomyLanding() {
                 <span className="hover-name" />
             </div>
 
-            <div className="cinematic-container">
-                <header className="main-header">
-                    <div className="brand">{brand}</div>
-                    <nav className="header-nav" aria-label="Давхаргууд">
-                        {navItems.map((item, i) => (
-                            <span key={item.href} className="nav-item">
-                                {i > 0 && <span className="nav-dot" />}
-                                <a href={item.href} className="nav-link" onClick={goTo(item.scroll)}>{item.label}</a>
-                            </span>
-                        ))}
-                    </nav>
-                    <div className="header-actions">
-                        <a href={headerCta.href} className="contact-btn" onClick={goTo(0.94)}>
-                            {headerCta.label} <span className="btn-circle" />
-                        </a>
-                    </div>
-                </header>
+            <SiteHeader />
 
+            <div className="cinematic-container">
                 <section className="slide" id="slide-1">
                     <SplitTitle as="h1" lines={hero.title} />
                     <div className="desc-row">
